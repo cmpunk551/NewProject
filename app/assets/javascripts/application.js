@@ -13,3 +13,19 @@
 //= require rails-ujs
 //= require activestorage
 //= require_tree .
+//= require jquery
+//= require jquery_ujs
+$(document).on("click", "#form_link", function(){
+   $("#form").submit();
+});
+$(document).ready(function() {
+	$("#form_div").hide();
+
+	$(document).on("click","#add_Todo", function(){
+   		$("#form_div").show();
+	});
+
+	$(document).on("click","#cancel_link", function(){
+   		$("#form_div").hide();
+	});
+});

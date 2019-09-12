@@ -1,0 +1,32 @@
+<div class="container">
+	<h1>Задачи</h1>
+	<%= image_tag ("addTodoIcon.png"), width: '50px', id:"add_Todo"%>
+	<% @projects.each do |project| %>
+		<h2>
+			<%= project.title %>
+		</h2>
+		<div class="container">
+			<% @todos.each do |todo| %>
+    			<% if todo.project_id == project.id%>
+    				<li style="margin-left: 10px" ><%= todo.text %></li>
+    			<% end %>
+  			<% end %>
+  		</div>
+	<% end %>
+	<div class="container", id="form_div"> 
+		<%= form_for @todo, :html => {:multipart => true ,:id => "form"} do |f| %>
+			<div class="field">
+    			<%= f.text_field :text, :placeholder => "Название задачи"%>
+    		</div>
+    		<div class="field">
+				<%= f.label :Проект %>
+				<%= select_tag(:project_id, options_for_select(@all_projects), :prompt => "Выберите проект") %>
+			</div>
+			<div style="display: inline-block;">
+				<%= link_to "Отмена" ,'', id: "cancel_link" %>
+    			<%= link_to "OK", "#" , id:"form_link"%>
+			</div>
+			
+		<% end %>
+	</div>
+</div>
