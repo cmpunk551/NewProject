@@ -7,6 +7,17 @@
 
     <%= stylesheet_link_tag    'application', media: 'all'%>
     <%= javascript_include_tag 'application'%>
+    <%= stylesheet_link_tag    'blue', media: 'all'%>
+    <%= javascript_include_tag 'icheck'%>
+    <script>
+      $(document).ready(function(){
+        $('input').iCheck({
+          checkboxClass: 'icheckbox_square-blue',
+          radioClass: 'iradio_square-blue',
+          increaseArea: '20%' // optional
+        });
+      });
+    </script>
   </head>
 
   <body>

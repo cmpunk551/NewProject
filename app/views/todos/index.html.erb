@@ -1,32 +1,54 @@
 <div class="container">
-	<h1>Задачи</h1>
-	<%= image_tag ("addTodoIcon.png"), width: '50px', id:"add_Todo"%>
-	<% @projects.each do |project| %>
-		<h2>
-			<%= project.title %>
-		</h2>
-		<div class="container">
-			<% @todos.each do |todo| %>
-    			<% if todo.project_id == project.id%>
-    				<li style="margin-left: 10px" ><%= todo.text %></li>
-    			<% end %>
-  			<% end %>
-  		</div>
-	<% end %>
-	<div class="container", id="form_div"> 
-		<%= form_for @todo, :html => {:multipart => true ,:id => "form"} do |f| %>
-			<div class="field">
-    			<%= f.text_field :text, :placeholder => "Название задачи"%>
-    		</div>
-    		<div class="field">
-				<%= f.label :Проект %>
-				<%= select_tag(:project_id, options_for_select(@all_projects), :prompt => "Выберите проект") %>
-			</div>
-			<div style="display: inline-block;">
-				<%= link_to "Отмена" ,'', id: "cancel_link" %>
-    			<%= link_to "OK", "#" , id:"form_link"%>
-			</div>
-			
-		<% end %>
+	<div class="header">
+		<h1>Задачи</h1>
+		<div class="image-header">
+			<%= image_tag ("addTodoIcon.png"), id:"add_Todo"%>
+		</div>
+	</div>
+	<div class="projects">
+		<div class="row">
+			<% @projects.each do |project| %>
+				<div class="col-lg-4 col-md-6">
+					<div class="project">
+						<h2>
+							<%= project.title %>
+						</h2>
+						<div class="todos">
+							<% @todos.each do |todo| %>
+    							<% if todo.project_id == project.id%>
+									<div class="todo-list">
+										<div class="checkbox">
+											<%=form_for 'todo',:html => {:multipart => true} , :url => { :controller => "todos", :action => "update", id: todo}, method: "put" do |f|%>
+											<%= f.hidden_field :todo_id, value: todo.id %>
+												<input type="checkbox" class="todo-checkbox" id="checkbox-<%=todo.id%>">
+											<%end%>
+										</div>
+    									<li class="todo"><span><label for="checkbox-<%=todo.id%>"><%= todo.text %></span></li>								
+    								</div>
+    								<br>
+    							<% end %>
+  							<% end %>
+  						</div>
+  					</div>
+  				</div>	
+			<% end %>
+		</div>
+	</div>	
+	<div class="form" id="form_div">
+	 	<div class="form-div">
+			<h3>НОВАЯ ЗАДАЧА</h3>
+			<%= form_for @todo, :html => {:multipart => true ,:id => "form"} do |f| %>
+				<div class="text-field">
+    				<%= f.text_field :text, :placeholder => "Название задачи", :id=>"text-field"%>
+    			</div>
+    			<div class="select-field">
+					<%= select_tag(:project_id, options_for_select(@all_projects), :prompt => "Категории", :id =>"select-field")%>
+				</div>
+				<div id="links-field" >
+					<%= link_to "ОТМЕНА" ,'', id: "cancel_link" %>
+    				<%= link_to "OK", "#" , id:"form_link"%>
+				</div>
+			<% end %>
+		</div>
 	</div>
 </div>

@@ -15,6 +15,15 @@
 //= require_tree .
 //= require jquery
 //= require jquery_ujs
+//= require select2
+$(document).ready(function() { $("#select-field").select2(); });
+
+$(document).ready(function(){
+    $("#select-field").select2({
+    	minimumResultsForSearch: -1
+    })
+});
+
 $(document).on("click", "#form_link", function(){
    $("#form").submit();
 });
@@ -29,3 +38,21 @@ $(document).ready(function() {
    		$("#form_div").hide();
 	});
 });
+
+$(function () {
+    $('input:checkbox').on('ifChanged', function () {
+        var input = $(this).parent().parent().parent().next('li').children('span');
+        if (this.checked) {
+            $(input).css('text-decoration', 'line-through');
+        } else {
+            $(input).css('text-decoration', 'none');
+        }
+    })
+})
+
+$(function () {
+    $('input:checkbox').on('ifChanged', function () {
+    	$(this).parent().parent().submit();
+    })
+})
+
