@@ -20,10 +20,10 @@
 										<div class="checkbox">
 											<%=form_for 'todo',:html => {:multipart => true} , :url => { :controller => "todos", :action => "update", id: todo}, method: "put" do |f|%>
 											<%= f.hidden_field :todo_id, value: todo.id %>
-												<input type="checkbox" class="todo-checkbox" id="checkbox-<%=todo.id%>">
+												<input type="checkbox" class="todo-checkbox" <% if todo.isCompleted%> checked <% end %>  id="checkbox-<%=todo.id%>">
 											<%end%>
 										</div>
-    									<li class="todo"><span><label for="checkbox-<%=todo.id%>"><%= todo.text %></span></li>								
+    									<li class="todo"><span><label for="checkbox-<%=todo.id%>" <%if todo.isCompleted %> style="text-decoration: line-through;"<%end%> ><%= todo.text %></span></li>		
     								</div>
     								<br>
     							<% end %>
