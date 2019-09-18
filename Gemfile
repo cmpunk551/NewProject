@@ -9,7 +9,7 @@ gem 'rails', '~> 5.2.3'
 gem "select2-rails"
 gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'rails-ujs', '~> 0.1.0'
-
+gem 'rails_12factor'
 gem "rack-timeout"
 # Use postgresql as the database for Active Record
 gem 'pg', '>= 0.18', '< 2.0'
