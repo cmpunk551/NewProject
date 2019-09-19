@@ -18,6 +18,7 @@ class TodosController < ApplicationController
     else
       @todo.update_attribute(:isCompleted, true)
     end
+    redirect_to root_path
   end
 
   def create
