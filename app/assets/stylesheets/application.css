@@ -16,13 +16,13 @@
  */
 @font-face {
   font-family: 'OpenSans-Regular';
-  src:url('OpenSans-Regular.ttf') format('truetype');
+  src: url('OpenSans-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
 @font-face {
   font-family: 'OpenSans-Light';
-  src:url('OpenSans-Light.ttf') format('truetype');
+  src: url('OpenSans-Light.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
