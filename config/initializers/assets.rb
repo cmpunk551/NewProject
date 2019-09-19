@@ -9,7 +9,7 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.paths << Rails.root.join('node_modules')
 Rails.application.config.assets.precompile += %w( blue.css )
 Rails.application.config.assets.precompile += %w( icheck.js )
-Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)\z/
+Rails.application.config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
 
 
 # Precompile additional assets.
