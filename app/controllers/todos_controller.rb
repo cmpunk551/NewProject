@@ -1,5 +1,6 @@
 class TodosController < ApplicationController
   	before_action :set_all_projects
+    before_action :set_new_todo
     protect_from_forgery with: :null_session
 
 
@@ -42,7 +43,10 @@ class TodosController < ApplicationController
   	def todo_params
   		params.require(:todo).permit(:text,:project_id,:isCompleted)
   	end 
-
+    def set_new_todo
+      @todo = Todo.new
+      
+    end
   	def set_all_projects
 		@all_projects = Project.all.map{ |p| [p.title, p.id]}
 	end 
