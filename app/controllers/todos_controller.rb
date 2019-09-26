@@ -1,6 +1,5 @@
 class TodosController < ApplicationController
   	before_action :set_all_projects
-    before_action :set_new_todo
     protect_from_forgery with: :null_session
 
 
@@ -8,10 +7,11 @@ class TodosController < ApplicationController
   	@projects = Project.all
   	@todos = Todo.all
   	@todo = Todo.new
+    json = { :projects => @projects, :todos => @todos }.to_json
     respond_to do |format|
       format.html # show.html.erb
       format.json{
-        render json: @projects
+        render json: json
       }
     end
 
@@ -43,10 +43,7 @@ class TodosController < ApplicationController
   	def todo_params
   		params.require(:todo).permit(:text,:project_id,:isCompleted)
   	end 
-    def set_new_todo
-      @todo = Todo.new
-      
-    end
+
   	def set_all_projects
 		@all_projects = Project.all.map{ |p| [p.title, p.id]}
 	end 
