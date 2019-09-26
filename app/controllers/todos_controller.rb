@@ -1,5 +1,7 @@
 class TodosController < ApplicationController
   	before_action :set_all_projects
+    protect_from_forgery with: :null_session
+
 
   def index
   	@projects = Project.all
