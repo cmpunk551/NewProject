@@ -8,7 +8,8 @@ class TodosController < ApplicationController
     respond_to do |format|
       format.html # show.html.erb
       format.json{
-        render json: @projects, @todos
+        render json: @projects
+        render json: @todos
       }
     end
 
