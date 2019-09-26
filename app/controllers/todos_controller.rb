@@ -9,7 +9,6 @@ class TodosController < ApplicationController
       format.html # show.html.erb
       format.json{
         render json: @projects
-        render json: @todos
       }
     end
 
@@ -24,12 +23,6 @@ class TodosController < ApplicationController
     else
       @todo.update_attribute(:isCompleted, true)
     end
-    respond_to do |format|
-      format.html # show.html.erb
-      format.json{
-        render json: @todo 
-      }
-    end
     redirect_to root_path
   end
 
@@ -38,12 +31,6 @@ class TodosController < ApplicationController
   	@todo.project_id = params[:project_id]
 	if @todo.save
   		redirect_to root_path
-      respond_to do |format|
-        format.html # show.html.erb
-        format.json {
-         render json: @todo 
-        }
-      end
   	else
   		puts @todo.text
   	end
