@@ -5,11 +5,16 @@ class TodosController < ApplicationController
   	@projects = Project.all
   	@todos = Todo.all
   	@todo = Todo.new
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json{
+        render json: @todo 
+      }
+    end
 
   end
 
   def update
-    puts("ВОТ ТУДУ")
     @todo_id= params[:todo][:todo_id]
     puts(@todo_id)
     @todo = Todo.find(@todo_id)
@@ -17,6 +22,12 @@ class TodosController < ApplicationController
       @todo.update_attribute(:isCompleted, false)
     else
       @todo.update_attribute(:isCompleted, true)
+    end
+    respond_to do |format|
+      format.html # show.html.erb
+      format.json{
+        render json: @todo 
+      }
     end
     redirect_to root_path
   end
@@ -26,6 +37,12 @@ class TodosController < ApplicationController
   	@todo.project_id = params[:project_id]
 	if @todo.save
   		redirect_to root_path
+      respond_to do |format|
+        format.html # show.html.erb
+        format.json {
+         render json: @todo 
+        }
+      end
   	else
   		puts @todo.text
   	end
