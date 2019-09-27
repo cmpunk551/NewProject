@@ -30,8 +30,16 @@ class TodosController < ApplicationController
   end
 
   def create
-  	@todo = Todo.new(todo_params)
-  	@todo.project_id = params[:project_id]
+    if (params[:todo])
+      puts("Я ИЗ ВЕБА АЛОООООО")
+      @todo = Todo.new(todo_params)
+      @todo.project_id = params[:project_id]
+    else
+      @todo = Todo.new
+      @todo.text = params[:text]
+      @todo.project_id = params[:project_id]
+    end
+  	
 	if @todo.save
   		redirect_to root_path
   	else
