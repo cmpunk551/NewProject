@@ -18,7 +18,7 @@ class TodosController < ApplicationController
   end
 
   def update
-    @todo_id= params[:todo][:todo_id]
+    @todo_id= params[:id]
     puts(@todo_id)
     @todo = Todo.find(@todo_id)
     if @todo.isCompleted
