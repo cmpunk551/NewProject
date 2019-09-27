@@ -31,7 +31,6 @@ class TodosController < ApplicationController
 
   def create
     if (params[:todo].has_key?(:text))
-      puts("Я ИЗ ВЕБА АЛОООООО")
       @todo = Todo.new(todo_params)
       @todo.project_id = params[:project_id]
     else
