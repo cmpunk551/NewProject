@@ -6,6 +6,7 @@ class TodosController < ApplicationController
   def index
   	@projects = Project.all
   	@todos = Todo.all
+    @todos.order! 'created_at DESC'
   	@todo = Todo.new
     json = { :projects => @projects, :todos => @todos }.to_json
     respond_to do |format|
