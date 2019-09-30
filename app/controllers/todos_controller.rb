@@ -38,6 +38,7 @@ class TodosController < ApplicationController
       @todo = Todo.new
       @todo.text = params[:text]
       @todo.project_id = params[:project_id]
+      @todo.isCompleted = false
     end
   	
 	if @todo.save
