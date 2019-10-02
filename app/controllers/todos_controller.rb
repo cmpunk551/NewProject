@@ -35,7 +35,7 @@ class TodosController < ApplicationController
       puts("ios работает")
       @todo = Todo.new
       @todo.text = params[:todo][:text]
-      @todo.project_id = params[:todo][:project_id]
+      @todo.project_id = params[:todo][:project_id].to_i
       @todo.isCompleted = false
     else
       puts("запрос из вэб и андройд")
