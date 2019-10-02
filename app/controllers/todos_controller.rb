@@ -43,11 +43,10 @@ class TodosController < ApplicationController
       end
     else
       @todo = Todo.new
-      @todo.text = params[:text]
-      @todo.project_id = params[:project_id]
-      @todo.isCompleted = false
+        @todo.text = params[:text]
+        @todo.project_id = params[:project_id]
+        @todo.isCompleted = false
     end
-  end
   	
 	if @todo.save
   		redirect_to root_path
