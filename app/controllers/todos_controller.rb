@@ -32,7 +32,8 @@ class TodosController < ApplicationController
 
   def create
     if(params[:todo] == "ios")
-      @todo = Todo.new
+        puts(params)
+        @todo = Todo.new
         @todo.text = params[:text]
         @todo.project_id = params[:project_id]
         @todo.isCompleted = false
