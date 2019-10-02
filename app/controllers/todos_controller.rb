@@ -35,11 +35,12 @@ class TodosController < ApplicationController
       puts("второй if true")
       @todo = Todo.new(todo_params)
       @todo.project_id = params[:project_id]
+      @todo.isCompleted = false
     else
       puts("второй if false")
       @todo = Todo.new
       @todo.text = params[:text]
-      @todo.project_id = params[:project_id][:project_id]
+      @todo.project_id = params[:project_id]
       @todo.isCompleted = false
     end
     
