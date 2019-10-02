@@ -31,7 +31,7 @@ class TodosController < ApplicationController
   end
 
   def create
-    if (params[:todo].has_key?(:text))
+    if (!params[:todo].has_key?(:ios))
       puts("второй if true")
       @todo = Todo.new(todo_params)
       @todo.project_id = params[:project_id]
@@ -39,8 +39,8 @@ class TodosController < ApplicationController
     else
       puts("второй if false")
       @todo = Todo.new
-      @todo.text = params[:text]
-      @todo.project_id = params[:project_id]
+      @todo.text = params[:todo][:text]
+      @todo.project_id = params[:todo][:project_id]
       @todo.isCompleted = false
     end
     
