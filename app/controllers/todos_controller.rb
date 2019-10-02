@@ -31,15 +31,23 @@ class TodosController < ApplicationController
   end
 
   def create
-    if (params[:todo].has_key?(:text) || params[:todo] != "" )
-      @todo = Todo.new(todo_params)
-      @todo.project_id = params[:project_id]
+    if(params[:todo] != "")
+      if (params[:todo].has_key?(:text))
+        @todo = Todo.new(todo_params)
+        @todo.project_id = params[:project_id]
+      else
+        @todo = Todo.new
+        @todo.text = params[:text]
+        @todo.project_id = params[:project_id]
+        @todo.isCompleted = false
+      end
     else
       @todo = Todo.new
       @todo.text = params[:text]
       @todo.project_id = params[:project_id]
       @todo.isCompleted = false
     end
+  end
   	
 	if @todo.save
   		redirect_to root_path
